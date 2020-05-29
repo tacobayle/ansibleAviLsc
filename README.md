@@ -1,7 +1,7 @@
 # aviLsc
 
 ## Goals
-This Ansible playbooks deploy Avi in an ubuntu VM/Server(s).
+These Ansible playbooks deploy Avi in an ubuntu VM/Server(s).
 
 ## Prerequisites:
 1. Make sure the Avi Software is available as defined in the params file
@@ -58,8 +58,8 @@ docker_install-18.1.5-9249.tar.gz
 docker_install-18.2.8-9205.tar.gz
 
 
-## Input/Parameters
-:
+## Input/Parameters:
+
 An inventory file with the following format (could be 1 or 3 controller hosts):
 ```
 ---
