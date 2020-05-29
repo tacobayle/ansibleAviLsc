@@ -61,7 +61,7 @@ docker_install-18.2.8-9205.tar.gz
 
 ## Input/Parameters:
 
-An inventory file with the following format (could be 1 or 3 controller hosts):
+1. An inventory file with the following format (could be 1 or 3 controller hosts):
 ```
 ---
 all:
@@ -80,29 +80,18 @@ all:
     ansible_ssh_private_key_file: "/home/avi/.ssh/id_rsa.local"
 ```
 
+2. All the paramaters/variables are stored in var/params.yml
+
 
 ## Use the ansible playbook to
 1. Install docker to all the SEs
 2. Install docker to all the Controllers
 3. Copy the Avi software (from the ansible host or from the cloud) to all the Controllers
 4. Install the Avi Software in all the Controllers
-5. Generate the controller json file to configure the cluster later
+5. Generate a yaml file with the version information
 ```
-{"leader": "192.168.139.130"}
-```
-6. Generate the credential file for upcoming tasks
-```
-avi_credentials:
-  api_version: 18.2.2
-  controller: 192.168.139.130
-  password: Avi_2019
-  username: admin
-avi_credentials_cluster:
-  api_version: 18.2.2
-  controller: 192.168.139.130
-  password: Avi_2019
-  username: admin
-cloud: lsc
+avi@ansible:~/ansible/aviLsc$ more ../aviBootstrapLsc/vars/aviVersion.yml
+api_version: 18.2.8
 ```
 
 ## Run the playbook:
