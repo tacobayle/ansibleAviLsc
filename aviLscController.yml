@@ -1,0 +1,64 @@
+---
+- hosts: controller
+  become: true
+  gather_facts: no
+  become_user: root
+  become_method: sudo
+
+  vars_files:
+    - "vars/params.yml"
+
+  tasks:
+
+    - name: Update repositories cache and install a list of package
+      become: true
+      apt:
+        name: "{{ item }}"
+        update_cache: yes
+      ignore_errors: yes
+      loop: "{{ packageList }}"
+      when: packageList is defined
+      tags:
+        - controller
+
+    - name: Upgrade all packages to the latest version
+      become: true
+      apt:
+        name: "*"
+        state: latest
+        force_apt_get: True
+      ignore_errors: yes
+      tags:
+        - controller
+
+    - name: Transfer and extract Avi software (from the ansible host)
+      unarchive:
+        src: "{{ avi.controller.binFile }}"
+        dest: ./
+        force: no
+      when: not avi.controller.googleDrive
+      tags:
+        - controller
+
+    - name: Download the Avi software
+      shell: |
+        curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id={{ avi.controller.googleId }}" > /dev/null ; curl -Lb ./cookie "https://drive.google.com/uc?export=download&confirm=`awk '/download/ {print $NF}' ./cookie`&id={{ avi.controller.googleId }}" -o {{ avi.controller.binFile | basename }}
+      when: avi.controller.googleDrive
+
+    - name: Unzip the archive
+      unarchive:
+        src: "{{ avi.controller.binFile | basename }}"
+        dest: ./
+        remote_src: yes
+      when: avi.controller.googleDrive
+      tags:
+        - controller
+
+    - name: install avi controller
+      become: true
+      shell: |
+        ifPrimary=`ip route | grep default | sed -e "s/^.*dev.//" -e "s/.proto.*//"`
+        ip=$(ifconfig $ifPrimary | grep 'inet addr' | awk -F: '{print $2}' | awk '{print $1}')
+        ./avi_baremetal_setup.py -c -cc "{{ avi.controller.cpu }}" -cm "{{ avi.controller.mem }}" -i $ip
+      tags:
+        - controller
