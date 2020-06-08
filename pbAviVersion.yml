@@ -20,7 +20,7 @@
         dest: "{{ avi.versionFile }}"
       tags:
         - version
-      when: avi.version is not defined
+      # when: avi.version is not defined
       delegate_to: 127.0.0.1
       run_once: true
 
