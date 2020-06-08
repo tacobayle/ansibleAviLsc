@@ -1,4 +1,4 @@
 ---
-- import_playbook: aviLscSe.yml
-- import_playbook: aviLscController.yml
-- import_playbook: generateCreds.yml
+- import_playbook: pbInstallDocker.yml
+- import_playbook: pbAviController.yml
+- import_playbook: pbAviVersion.yml

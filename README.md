@@ -68,29 +68,29 @@ all:
   children:
     se:
       hosts:
-        192.168.17.152:
-        192.168.17.153:
+        192.168.142.129:
+        192.168.142.130:
     controller:
       hosts:
-        192.168.139.130:
+        192.168.142.135:
 
 
   vars:
     ansible_user: avi
     ansible_ssh_private_key_file: "/home/avi/.ssh/id_rsa.local"
+s
 ```
 
 2. All the paramaters/variables are stored in var/params.yml
 
 
 ## Use the ansible playbook to
-1. Install docker to all the SEs
-2. Install docker to all the Controllers
-3. Copy the Avi software (from the ansible host or from the cloud) to all the Controllers
+1. Install docker to all the SEs and controllers
+2. Copy the Avi software (from the ansible host) to all the Controllers
 4. Install the Avi Software in all the Controllers
 5. Generate a yaml file with the version information
 ```
-avi@ansible:~/ansible/aviLsc$ more ../aviBootstrapLsc/vars/aviVersion.yml
+avi@ansible:~/ansible/aviLsc$ more ../aviLscBootstrap/vars/aviVersion.yml
 api_version: 18.2.8
 ```
 

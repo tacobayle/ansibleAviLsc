@@ -7,19 +7,19 @@
 
   tasks:
 
-    - name: Retrieve Avi version
-      set_fact:
-        aviVersion: "{{ avi.controller.binFile.split('/')[-1].split('-')[1] }}"
-      tags:
-        - creds
-      when: avi.version is not defined
+    # - name: Retrieve Avi version
+    #   set_fact:
+    #     aviVersion: "{{ avi.controller.binFile.split('/')[-1].split('-')[1] }}"
+    #   tags:
+    #     - creds
+    #   when: avi.version is not defined
 
     - name: Write Avi version in a file
       copy:
         content: "api_version: {{ avi.controller.binFile.split('/')[-1].split('-')[1] }}"
-        dest: ../aviBootstrapLsc/vars/aviVersion.yml
+        dest: "{{ avi.versionFile }}"
       tags:
-        - creds
+        - version
       when: avi.version is not defined
       delegate_to: 127.0.0.1
       run_once: true
