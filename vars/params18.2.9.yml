@@ -14,7 +14,7 @@ avi:
     # googleDrive: false
     # googleId: 18ytTgU2pBs36sCuE_gLDXjdtFkf8K4l-
     #binFile: /home/avi/bin/avi/docker_install-17.2.14-9128.tar.gz
-    binFile: /home/avi/bin/avi/docker_install-18.2.7-9129.tar
+    binFile: /home/avi/bin/avi/docker_install-18.2.9-9147.tar.gz
   # credentialsFile:
   #   - ../aviBootstrap/vars/creds.yml
   #version: 17.2.14

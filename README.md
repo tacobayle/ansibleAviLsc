@@ -54,9 +54,9 @@ avi@controller:~$
 ### Avi version
 
 ```
-docker_install-17.2.14-9128.tar.gz
-docker_install-18.1.5-9249.tar.gz
+docker_install-18.2.7-9129.tar
 docker_install-18.2.8-9205.tar.gz
+docker_install-18.2.9-9147.tar.gz
 ```
 
 ## Input/Parameters:

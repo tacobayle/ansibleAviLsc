@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: se:controller
   gather_facts: yes
   become_user: root
   become_method: sudo
