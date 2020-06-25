@@ -102,3 +102,8 @@ ansible-playbook -i hostsLocal main.yml --tags "controller"
 ansible-playbook -i hostsLocal main.yml --tags "creds"
 
 ## Improvement:
+improve on which ip/interface to install Avi:
+```
+aviIf: ens33
+ip=$(ip -f inet addr show {{ aviIf }} | awk '/inet / {print $2}' | awk -F/ '{print $1}')
+```
