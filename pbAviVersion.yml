@@ -20,28 +20,5 @@
         dest: "{{ avi.versionFile }}"
       tags:
         - version
-      # when: avi.version is not defined
       delegate_to: 127.0.0.1
       run_once: true
-
-    # - name: generate Avi controller.json file
-    #   command: "python3 generateController.py {{ inventory_file }} {{ avi.floatingIp | default('undefined') }} {{ item }}"
-    #   delegate_to: 127.0.0.1
-    #   loop: "{{ avi.controllerFile }}"
-    #   when: avi.controllerFile is defined
-    #   tags:
-    #     - creds
-    #
-    # - name: generate Avi creds.yml file
-    #   command: "python3 generateCreds.py {{ inventory_file }} {{ avi.username | default('admin') }} {{ avi.password }} {{ aviVersion | default(avi.version) }} {{ avi.floatingIp | default('undefined') }} {{ avi.cloud | default('lsc') }} {{ item }}"
-    #   delegate_to: 127.0.0.1
-    #   loop: "{{ avi.credentialsFile }}"
-    #   when: avi.credentialsFile is defined
-    #   tags:
-    #     - creds
-    #
-    # - name: copy host file to other directory
-    #   command: "cp {{ inventory_file | basename }} ../aviBootstrap/{{ inventory_file | basename }}"
-    #   delegate_to: 127.0.0.1
-    #   tags:
-    #     - creds

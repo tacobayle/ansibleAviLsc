@@ -10,27 +10,6 @@
 
   tasks:
 
-    # - name: Update repositories cache and install a list of package
-    #   become: true
-    #   apt:
-    #     name: "{{ item }}"
-    #     update_cache: yes
-    #   ignore_errors: yes
-    #   loop: "{{ packageList }}"
-    #   when: packageList is defined
-    #   tags:
-    #     - controller
-    #
-    # - name: Upgrade all packages to the latest version
-    #   become: true
-    #   apt:
-    #     name: "*"
-    #     state: latest
-    #     force_apt_get: True
-    #   ignore_errors: yes
-    #   tags:
-    #     - controller
-
     - name: Transfer and extract Avi software (from the ansible host)
       unarchive:
         src: "{{ avi.controller.binFile }}"
